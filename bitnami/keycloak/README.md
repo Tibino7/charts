@@ -84,7 +84,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | --------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------- |
 | `image.registry`                  | Keycloak image registry                                                                       | `docker.io`            |
 | `image.repository`                | Keycloak image repository                                                                     | `bitnami/keycloak`     |
-| `image.tag`                       | Keycloak image tag (immutable tags are recommended)                                           | `16.1.1-debian-10-r36` |
+| `image.tag`                       | Keycloak image tag (immutable tags are recommended)                                           | `17.0.1-debian-10-r0`  |
 | `image.pullPolicy`                | Keycloak image pull policy                                                                    | `IfNotPresent`         |
 | `image.pullSecrets`               | Specify docker-registry secret names as an array                                              | `[]`                   |
 | `image.debug`                     | Specify if debug logs should be enabled                                                       | `false`                |
@@ -106,13 +106,11 @@ The command removes all the Kubernetes components associated with the chart and 
 | `auth.tls.truststorePassword`     | Password to access the truststore when it's password-protected                                | `""`                   |
 | `auth.tls.resources.limits`       | The resources limits for the TLS init container                                               | `{}`                   |
 | `auth.tls.resources.requests`     | The requested resources for the TLS init container                                            | `{}`                   |
-| `proxyAddressForwarding`          | Enable Proxy Address Forwarding                                                               | `false`                |
+| `proxy`                           | reverse Proxy mode edge, reencrypt, passthrough or none                                       | `passthrough`          |
 | `serviceDiscovery.enabled`        | Enable Service Discovery for Keycloak (required if `replicaCount` > `1`)                      | `false`                |
 | `serviceDiscovery.protocol`       | Sets the protocol that Keycloak nodes would use to discover new peers                         | `kubernetes.KUBE_PING` |
 | `serviceDiscovery.properties`     | Properties for the discovery protocol set in `serviceDiscovery.protocol` parameter            | `[]`                   |
 | `serviceDiscovery.transportStack` | Transport stack for the discovery protocol set in `serviceDiscovery.protocol` parameter       | `tcp`                  |
-| `cache.ownersCount`               | Number of nodes that will replicate cached data                                               | `1`                    |
-| `cache.authOwnersCount`           | Number of nodes that will replicate cached authentication data                                | `1`                    |
 | `configuration`                   | Keycloak Configuration. Auto-generated based on other parameters when not specified           | `""`                   |
 | `existingConfigmap`               | Name of existing ConfigMap with Keycloak configuration                                        | `""`                   |
 | `extraStartupArgs`                | Extra default startup args                                                                    | `""`                   |
@@ -226,7 +224,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | --------------------------------------------- | --------------------------------------------------------- | ------- |
 | `serviceAccount.create`                       | Enable the creation of a ServiceAccount for Keycloak pods | `true`  |
 | `serviceAccount.name`                         | Name of the created ServiceAccount                        | `""`    |
-| `serviceAccount.automountServiceAccountToken` | Auto-mount the service account token in the pod           | `false` |
+| `serviceAccount.automountServiceAccountToken` | Auto-mount the service account token in the pod           | `true`  |
 | `serviceAccount.annotations`                  | Additional custom annotations for the ServiceAccount      | `{}`    |
 | `rbac.create`                                 | Whether to create and use RBAC resources or not           | `false` |
 | `rbac.rules`                                  | Custom RBAC rules                                         | `[]`    |
@@ -272,7 +270,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `keycloakConfigCli.enabled`                               | Whether to enable keycloak-config-cli job                                                       | `false`                       |
 | `keycloakConfigCli.image.registry`                        | keycloak-config-cli container image registry                                                    | `docker.io`                   |
 | `keycloakConfigCli.image.repository`                      | keycloak-config-cli container image repository                                                  | `bitnami/keycloak-config-cli` |
-| `keycloakConfigCli.image.tag`                             | keycloak-config-cli container image tag                                                         | `4.7.0-debian-10-r14`         |
+| `keycloakConfigCli.image.tag`                             | keycloak-config-cli container image tag                                                         | `4.9.0-debian-10-r14`         |
 | `keycloakConfigCli.image.pullPolicy`                      | keycloak-config-cli container image pull policy                                                 | `IfNotPresent`                |
 | `keycloakConfigCli.image.pullSecrets`                     | keycloak-config-cli container image pull secrets                                                | `[]`                          |
 | `keycloakConfigCli.annotations`                           | Annotations for keycloak-config-cli job                                                         | `{}`                          |
